@@ -1,16 +1,15 @@
 import "./App.scss";
 import { Route, Routes } from "react-router-dom";
-import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
-import Contact from "./pages/contact/Contact";
-import Homepage from "./pages/home/Homepage";
+import {Footer,Header} from "./components";
+import {Contact,Home} from "./pages";
+
 
 function App() {
   return (
     <div>
       <Header />
       <Routes>
-        <Route path="/" element={<Homepage/>}/>
+        <Route path="/" element={<Home/>}/>
         <Route path="/contact" element={<Contact/>}/>
       </Routes>
       <Footer/>
