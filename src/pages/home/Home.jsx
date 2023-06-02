@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from "./Homepage.module.scss"
 
-const Homepage = () => {
+const Home = () => {
   return (
     <div>Homepage</div>
   )
 }
 
-export default Homepage
+export default Home;
