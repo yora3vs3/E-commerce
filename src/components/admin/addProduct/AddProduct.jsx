@@ -43,6 +43,8 @@ const AddProduct = () => {
     const file = e.target.files[0];
     // console.log(file);
 
+    
+
     const storageRef = ref(storage, `eshop/${Date.now()}${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
