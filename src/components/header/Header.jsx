@@ -13,7 +13,7 @@ import {
   SET_ACTIVE_USER,
 } from "../../redux/slice/authSlice";
 import ShowOnLogin, { ShowOnLogout } from "../hidden-link/HiddenLink";
-import AdminOnlyRoute from "../admin-only-route/AdminOnlyRoute";
+import AdminOnlyRoute from "../adminOnlyRoute/AdminOnlyRoute";
 
 const logo = (
   <div className={styles.logo}>
