@@ -7,6 +7,13 @@ import { auth } from "../../firebase/config";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import {
+  REMOVE_ACTIVE_USER,
+  SET_ACTIVE_USER,
+} from "../../redux/slice/authSlice";
+import ShowOnLogin, { ShowOnLogout } from "../hidden-link/HiddenLink";
+import AdminOnlyRoute from "../adminOnlyRoute/AdminOnlyRoute";
 
 const logo = (
   <div className={styles.logo}>
@@ -35,18 +42,34 @@ const Header = () => {
   const [displayName, setdisplayName] = useState("");
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+
   // Monitor currently sign in user
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        const uid = user.uid;
-        console.log(user.displayName);
-        setdisplayName(user.displayName);
+        // console.log(user);
+        if (user.displayName == null) {
+          const u1 = user.email.slice(0, -10);
+          const uName = u1.charAt(0).toUpperCase() + u1.slice(1);
+          setdisplayName(uName);
+        } else {
+          setdisplayName(user.displayName);
+        }
+
+        dispatch(
+          SET_ACTIVE_USER({
+            email: user.email,
+            userName: user.displayName ? user.displayName : displayName,
+            userID: user.uid,
+          })
+        );
       } else {
         setdisplayName("");
+        dispatch(REMOVE_ACTIVE_USER());
       }
     });
-  }, []);
+  }, [dispatch, displayName]);
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -92,6 +115,12 @@ const Header = () => {
               <FaTimes size={22} color="#fff" onClick={hideMenu} />
             </li>
             <li>
+              <AdminOnlyRoute>
+                {" "}
+                <button className="--btn --btn-primary">Admin</button>
+              </AdminOnlyRoute>
+            </li>
+            <li>
               <NavLink to="/" className={activeLink}>
                 Home
               </NavLink>
@@ -104,22 +133,27 @@ const Header = () => {
           </ul>
           <div className={styles["header-right"]} onClick={hideMenu}>
             <span className={styles.links}>
-              <NavLink to="/login" className={activeLink}>
-                Login
-              </NavLink>
-              <a href="#">
-                <FaUserCircle size={16} />
-                Hi, {displayName}
-              </a>
-              <NavLink to="/register" className={activeLink}>
-                Register
-              </NavLink>
-              <NavLink to="/order-history" className={activeLink}>
-                My Orders
-              </NavLink>
-              <NavLink to="/" onClick={logoutUser}>
-                Logout
-              </NavLink>
+              <ShowOnLogout>
+                <NavLink to="/login" className={activeLink}>
+                  Login
+                </NavLink>
+              </ShowOnLogout>
+              <ShowOnLogin>
+                <a href="#home" style={{ color: "#ff7722" }}>
+                  <FaUserCircle size={16} />
+                  Hi, {displayName}
+                </a>
+              </ShowOnLogin>
+              <ShowOnLogin>
+                <NavLink to="/order-history" className={activeLink}>
+                  My Orders
+                </NavLink>
+              </ShowOnLogin>
+              <ShowOnLogin>
+                <NavLink to="/" onClick={logoutUser}>
+                  Logout
+                </NavLink>
+              </ShowOnLogin>
             </span>
             {cart}
           </div>

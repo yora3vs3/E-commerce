@@ -1,10 +1,14 @@
-import React from 'react'
-import styles from "./Homepage.module.scss"
+import React from "react";
+import AdminOnlyRoute from "../../components/adminOnlyRoute/AdminOnlyRoute";
+import Slider from "../../components/slider/Slider";
 
 const Home = () => {
   return (
-    <div>Homepage</div>
-  )
-}
+    <div>
+      <Slider />
+      {/* <h1>Home Page</h1> */}
+    </div>
+  );
+};
 
 export default Home;
