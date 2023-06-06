@@ -22,11 +22,7 @@ const ViewProducts = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(
-      STORE_PRODUCTS({
-        products: data,
-      })
-    );
+    dispatch(STORE_PRODUCTS({ products: data, }));
   }, [dispatch, data]);
 
   const confirmDelete = (id, imageURL) => {
