@@ -3,7 +3,7 @@ import { CountryDropdown } from "react-country-region-selector";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Card from "../../components/card/Card";
-import CheckoutSummary from "../../components/checkoutSummary/CheckoutSummary.js";
+import CheckoutSummary from "../../components/checkoutSummary/CheckoutSummary.jsx";
 import {
   SAVE_BILLING_ADDRESS,
   SAVE_SHIPPING_ADDRESS,
