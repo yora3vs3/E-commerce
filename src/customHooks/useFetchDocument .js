@@ -1,51 +1,32 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import {
-  ADD_TO_CART,
-  CALCULATE_TOTAL_QUANTITY,
-} from "../../../redux/slice/cartSlice";
-import Card from "../../card/Card";
-import styles from "./ProductItem.module.scss";
+import { doc, getDoc } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { db } from "../firebase/config";
 
-const ProductItem = ({ product, grid, id, name, price, desc, imageURL }) => {
-  const dispatch = useDispatch();
-  const shortenText = (text, n) => {
-    if (text.length > n) {
-      const shortenedText = text.substring(0, n).concat("...");
-      return shortenedText;
+const useFetchDocument = (collectionName, documentID) => {
+  const [document, setDocument] = useState(null);
+
+  const getDocument = async () => {
+    const docRef = doc(db, collectionName, documentID);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      // console.log("Document data:", docSnap.data());
+      const obj = {
+        id: documentID,
+        ...docSnap.data(),
+      };
+      setDocument(obj);
+    } else {
+      toast.error("Document not found");
     }
-    return text;
   };
 
-  const addToCart = (product) => {
-    dispatch(ADD_TO_CART(product));
-    dispatch(CALCULATE_TOTAL_QUANTITY());
-  };
+  useEffect(() => {
+    getDocument();
+  }, []);
 
-  return (
-    <Card cardClass={grid ? `${styles.grid}` : `${styles.list}`}>
-      <Link to={`/product-details/${id}`}>
-        <div className={styles.img}>
-          <img src={imageURL} alt={name} />
-        </div>
-      </Link>
-      <div className={styles.content}>
-        <div className={styles.details}>
-          <p>{`$${price}`}</p>
-          <h4>{shortenText(name, 18)}</h4>
-        </div>
-        {!grid && <p className={styles.desc}>{shortenText(desc, 200)}</p>}
-
-        <button
-          className="--btn --btn-danger"
-          onClick={() => addToCart(product)}
-        >
-          Add To Cart
-        </button>
-      </div>
-    </Card>
-  );
+  return { document };
 };
 
-export default ProductItem;
+export default useFetchDocument;

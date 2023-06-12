@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import useFetchCollection from "../../customHooks/useFetchCollection";
 import {
   GET_PRICE_RANGE,
   selectProducts,
@@ -11,6 +10,7 @@ import ProductFilter from "./productFilter/ProductFilter";
 import ProductList from "./productList/ProductList";
 import spinnerImg from "../../assets/spinner.jpg";
 import { FaCogs } from "react-icons/fa";
+import useFetchCollection from "../../customHooks/useFetchCollection";
 
 const Product = () => {
   const { data, isLoading } = useFetchCollection("products");
