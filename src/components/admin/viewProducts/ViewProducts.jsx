@@ -14,16 +14,41 @@ import {
   STORE_PRODUCTS,
 } from "../../../redux/slice/productSlice";
 import useFetchCollection from "../../../customHooks/useFetchCollection";
+import {
+  FILTER_BY_SEARCH,
+  selectFilteredProducts,
+} from "../../../redux/slice/filterSlice";
+import Search from "../../search/Search";
+import Pagination from "../../pagination/Pagination";
 
 const ViewProducts = () => {
+  const [search, setSearch] = useState("");
   const { data, isLoading } = useFetchCollection("products");
   const products = useSelector(selectProducts);
-
+  const filteredProducts = useSelector(selectFilteredProducts);
+  // Pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage, setProductsPerPage] = useState(10);
+  // Get Current Products
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(STORE_PRODUCTS({ products: data, }));
+    dispatch(
+      STORE_PRODUCTS({
+        products: data,
+      })
+    );
   }, [dispatch, data]);
+
+  useEffect(() => {
+    dispatch(FILTER_BY_SEARCH({ products, search }));
+  }, [dispatch, products, search]);
 
   const confirmDelete = (id, imageURL) => {
     Notiflix.Confirm.show(
@@ -65,7 +90,14 @@ const ViewProducts = () => {
       <div className={styles.table}>
         <h2>All Products</h2>
 
-        {products.length === 0 ? (
+        <div className={styles.search}>
+          <p>
+            <b>{filteredProducts.length}</b> products found
+          </p>
+          <Search value={search} onChange={(e) => setSearch(e.target.value)} />
+        </div>
+
+        {filteredProducts.length === 0 ? (
           <p>No product found.</p>
         ) : (
           <table>
@@ -79,10 +111,10 @@ const ViewProducts = () => {
                 <th>Actions</th>
               </tr>
             </thead>
-            {products.map((product, index) => {
-              const { id, name, price, imageURL, category } = product;
-              return (
-                <tbody>
+            <tbody>
+              {currentProducts.map((product, index) => {
+                const { id, name, price, imageURL, category } = product;
+                return (
                   <tr key={id}>
                     <td>{index + 1}</td>
                     <td>
@@ -107,11 +139,17 @@ const ViewProducts = () => {
                       />
                     </td>
                   </tr>
-                </tbody>
-              );
-            })}
+                );
+              })}
+            </tbody>
           </table>
         )}
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          productsPerPage={productsPerPage}
+          totalProducts={filteredProducts.length}
+        />
       </div>
     </>
   );
