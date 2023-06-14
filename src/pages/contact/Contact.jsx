@@ -11,14 +11,13 @@ const Contact = () => {
 
   const sendEmail = (e) => {
     e.preventDefault();
-    console.log(form.current);
 
     emailjs
       .sendForm(
-        "service_li2pfsw",
-        "template_7xyhwen",
+        "service_4uyohyu",
+        "template_u79vxel",
         form.current,
-        "user_hKs2aRfLoozcqA28UpUyz"
+        "3AiYHl2UTOh4e2gIe"
       )
       .then(
         (result) => {
