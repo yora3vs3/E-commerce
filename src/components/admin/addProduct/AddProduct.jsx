@@ -35,7 +35,6 @@ const AddProduct = () => {
   const { id } = useParams();
   const products = useSelector(selectProducts);
   const productEdit = products.find((item) => item.id === id);
-  console.log(productEdit);
 
   const [product, setProduct] = useState(() => {
     const newState = detectForm(id, { ...initialState }, productEdit);
@@ -90,7 +89,7 @@ const AddProduct = () => {
     setIsLoading(true);
 
     try {
-      const docRef = addDoc(collection(db, "products"), {
+      addDoc(collection(db, "products"), {
         name: product.name,
         imageURL: product.imageURL,
         price: Number(product.price),
