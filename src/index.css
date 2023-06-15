@@ -2,8 +2,8 @@
 
 :root {
   --font-family: "Poppins", sans-serif;
-  --dark-blue: rgba(0, 0, 0, 0.948);
-  --light-blue: #1f93ff;
+  --dark-blue: rgb(16, 16, 23);
+  --light-blue: grey;
 
   --color-white: #fff;
   --color-dark: #333;
@@ -12,11 +12,11 @@
   --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 
   --color-purple: #9d0191;
-  --color-orange: #ff7722;
+  --color-orange:#ED1703;
 
   --color-primary: #007bff;
   --color-success: #28a745;
-  --color-danger: orangered;
+  --color-danger:#ED1703;
 }
 
 * {
@@ -28,6 +28,7 @@
 
 html {
   font-size: 10px;
+  background-color: #e9e0e0ad;
 }
 
 body {
@@ -183,7 +184,7 @@ p {
   color: #007bff;
 }
 .--color-danger {
-  color: orangered;
+  color:#ED1703;
 }
 .--color-success {
   color: #28a745;
@@ -299,7 +300,7 @@ p {
 
 .--btn-primary {
   color: #fff;
-  background: #007bff;
+  background: grey;
 }
 .--btn-secondary {
   color: #fff;
@@ -308,7 +309,7 @@ p {
 }
 .--btn-danger {
   color: #fff;
-  background: orangered;
+  background:#ED1703;
 }
 
 .--btn-success {

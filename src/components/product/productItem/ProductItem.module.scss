@@ -4,6 +4,10 @@
     margin: 5px;
     height: 36rem;
     position: relative;
+
+    &:hover{
+      background-color:#eee ;
+    }
     .img {
       padding: 1rem;
       width: 100%;

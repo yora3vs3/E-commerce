@@ -2,6 +2,7 @@
     padding: 5px;
     width: 100%;
     overflow-x: auto;
+    min-height: 360px;
   
     table {
       border-collapse: collapse;
@@ -33,10 +34,13 @@
       tr {
         border-bottom: 1px solid #ccc;
         cursor: pointer;
+        &:hover{
+          background-color: #c7c5c5;
+        }
       }
   
       tr:nth-child(even) {
-        background-color: #eee;
+        background-color:#e5e2e2;
       }
       .pending {
         color: orangered;

@@ -219,7 +219,7 @@ const CheckoutDetails = () => {
                 value={billingAddress.phone}
                 onChange={(e) => handleBilling(e)}
               />
-              <button type="submit" className="--btn --btn-primary">
+              <button type="submit" className="--btn --btn-danger">
                 Proceed To Checkout
               </button>
             </Card>

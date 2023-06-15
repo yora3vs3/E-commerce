@@ -135,7 +135,7 @@ const Cart = () => {
               </tbody>
             </table>
             <div className={styles.summary}>
-              <button className="--btn --btn-danger" onClick={clearCart}>
+              <button className="--btn --btn-primary " onClick={clearCart}>
                 Clear Cart
               </button>
               <div className={styles.checkout}>
@@ -153,7 +153,7 @@ const Cart = () => {
                   </div>
                   <p>Tax an shipping calculated at checkout</p>
                   <button
-                    className="--btn --btn-primary --btn-block"
+                    className="--btn --btn-primary --btn-danger --btn-block"
                     onClick={checkout}
                   >
                     Checkout
