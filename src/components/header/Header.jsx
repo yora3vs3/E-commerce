@@ -18,13 +18,12 @@ import {
   CALCULATE_TOTAL_QUANTITY,
   selectCartTotalQuantity,
 } from "../../redux/slice/cartSlice";
+import logoImg from "./wazibiz-low-resolution-logo-color-on-transparent-background.png"
 
 const logo = (
   <div className={styles.logo}>
     <Link to="/">
-      <h2>
-        e<span>Shop</span>.
-      </h2>
+       <img src={logoImg} alt="wazibiz" logo />
     </Link>
   </div>
 );
