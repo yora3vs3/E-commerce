@@ -16,8 +16,8 @@ import { useSelector } from "react-redux";
 import { selectPreviousURL } from "../../redux/slice/cartSlice";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("test@gmail.com");
+  const [password, setPassword] = useState("test123");
   const [isLoading, setIsLoading] = useState(false);
 
   const previousURL = useSelector(selectPreviousURL);

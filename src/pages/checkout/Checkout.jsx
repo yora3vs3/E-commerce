@@ -39,7 +39,7 @@ const Checkout = () => {
   const description = `eShop payment: email: ${customerEmail}, Amount: ${totalAmount}`;
 
   useEffect(() => {
-    console.log(process.env.REACT_APP_STRIPE_PK)
+    // console.log(process.env.REACT_APP_STRIPE_PK)
     // Create PaymentIntent as soon as the page loads
     fetch("http://localhost:4242/create-payment-intent", {
       method: "POST",

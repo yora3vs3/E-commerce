@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   ADD_TO_CART,
@@ -17,6 +17,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import Card from "../../components/card/Card";
 import { selectIsLoggedIn } from "../../redux/slice/authSlice";
+import { Zoom } from "react-awesome-reveal";
 
 const Cart = () => {
   const cartItems = useSelector(selectCartItems);
@@ -24,6 +25,7 @@ const Cart = () => {
   const cartTotalQuantity = useSelector(selectCartTotalQuantity);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const [showBtn, setShowBtn] = useState(-1);
 
   const navigate = useNavigate();
 
@@ -89,7 +91,11 @@ const Cart = () => {
                 {cartItems.map((cart, index) => {
                   const { id, name, price, imageURL, cartQuantity } = cart;
                   return (
-                    <tr key={id}>
+                    <tr
+                      key={id}
+                      onMouseLeave={() => setShowBtn(-1)}
+                      onMouseEnter={() => setShowBtn(id)}
+                    >
                       <td>{index + 1}</td>
                       <td>
                         <p>
@@ -123,11 +129,14 @@ const Cart = () => {
                       </td>
                       <td>{(price * cartQuantity).toFixed(2)}</td>
                       <td className={styles.icons}>
-                        <FaTrashAlt
-                          size={19}
-                          color="red"
-                          onClick={() => removeFromCart(cart)}
-                        />
+                        {showBtn ===id && <Zoom>
+                          <FaTrashAlt
+                            size={19}
+                            color="red"
+                            onClick={() => removeFromCart(cart)}
+                          />
+                        </Zoom>}
+
                       </td>
                     </tr>
                   );

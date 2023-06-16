@@ -20,6 +20,7 @@ import {
 } from "../../../redux/slice/filterSlice";
 import Search from "../../search/Search";
 import Pagination from "../../pagination/Pagination";
+import { Zoom } from "react-awesome-reveal";
 
 const ViewProducts = () => {
   const [search, setSearch] = useState("");
@@ -29,6 +30,8 @@ const ViewProducts = () => {
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setProductsPerPage] = useState(10);
+
+  const [showBtn, setShowBtn] = useState(-1);
   // Get Current Products
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -115,7 +118,10 @@ const ViewProducts = () => {
               {currentProducts.map((product, index) => {
                 const { id, name, price, imageURL, category } = product;
                 return (
-                  <tr key={id}>
+                  <tr
+                    key={id}
+                    onMouseLeave={() => setShowBtn(-1)}
+                    onMouseEnter={() => setShowBtn(id)}>
                     <td>{index + 1}</td>
                     <td>
                       <img
@@ -127,16 +133,20 @@ const ViewProducts = () => {
                     <td>{name}</td>
                     <td>{category}</td>
                     <td>{`$${price}`}</td>
+
                     <td className={styles.icons}>
-                      <Link to={`/admin/add-product/${id}`}>
-                        <FaEdit size={20} color="green" />
-                      </Link>
-                      &nbsp;
-                      <FaTrashAlt
-                        size={18}
-                        color="red"
-                        onClick={() => confirmDelete(id, imageURL)}
-                      />
+                      {showBtn === id && <Zoom>
+                        <div className={styles.icons}>
+                        <Link to={`/admin/add-product/${id}`}>
+                          <FaEdit size={20} color="green" />
+                        </Link>
+                        &nbsp;
+                        <FaTrashAlt
+                          size={18}
+                          color="red"
+                          onClick={() => confirmDelete(id, imageURL)}
+                        /> </div>
+                      </Zoom>}
                     </td>
                   </tr>
                 );

@@ -7,6 +7,7 @@ import {
 } from "../../../redux/slice/cartSlice";
 import Card from "../../card/Card";
 import styles from "./ProductItem.module.scss";
+import { Zoom } from "react-awesome-reveal";
 
 const ProductItem = ({ product, grid, id, name, price, desc, imageURL }) => {
   const dispatch = useDispatch();
@@ -43,12 +44,14 @@ const ProductItem = ({ product, grid, id, name, price, desc, imageURL }) => {
           </div>
           {!grid && <p className={styles.desc}>{shortenText(desc, 300)}</p>}
 
-          {showBtn && <button
+          {showBtn && 
+          <Zoom><button
             className="--btn --btn-danger"
             onClick={() => addToCart(product)}
           >
             Add To Cart
-          </button>}
+          </button>
+            </Zoom>}
         </div>
       </Card>
     </div>

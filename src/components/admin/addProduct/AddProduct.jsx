@@ -57,9 +57,21 @@ const AddProduct = () => {
     setProduct({ ...product, [name]: value });
   };
 
+  const  getImageFilename = (url) =>{
+    const filenameWithParams = url.substring(url.lastIndexOf('%') + 1);
+    const filename = filenameWithParams.split('?')[0];
+  
+    return filename;
+  }
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     // console.log(file);
+    if (product.imageURL !== productEdit.imageURL) {
+      const delRef = ref(storage,`eshop/${getImageFilename(productEdit.imageURL)}` );
+      deleteObject (delRef);
+      
+    }
 
     const storageRef = ref(storage, `eshop/${Date.now()}${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
@@ -114,10 +126,7 @@ const AddProduct = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    if (product.imageURL !== productEdit.imageURL) {
-      const storageRef = ref(storage, productEdit.imageURL);
-      deleteObject(storageRef);
-    }
+    
 
     try {
       setDoc(doc(db, "products", id), {
@@ -157,7 +166,6 @@ const AddProduct = () => {
             />
 
             <label>Product image:</label>
-            <Card cardClass={styles.group}>
               {uploadProgress === 0 ? null : (
                 <div className={styles.progress}>
                   <div
@@ -189,7 +197,6 @@ const AddProduct = () => {
                   disabled
                 />
               )}
-            </Card>
 
             <label>Product price:</label>
             <input
@@ -236,10 +243,10 @@ const AddProduct = () => {
               value={product.desc}
               onChange={(e) => handleInputChange(e)}
               cols="30"
-              rows="10"
+              rows="7"
             ></textarea>
 
-            <button className="--btn --btn-primary">
+            <button className="--btn --btn-danger">
               {detectForm(id, "Save Product", "Edit Product")}
             </button>
           </form>

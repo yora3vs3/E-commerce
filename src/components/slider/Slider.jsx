@@ -54,9 +54,12 @@ const Slider = () => {
                   <h2>{heading}</h2>
                   <p>{desc}</p>
                   <hr />
-                  <a href="#product" style={{backgroundColor:"#ED1703"}} className="--btn --btn-primary --color-danger">
+                  <button className="--btn --btn-danger">
+                   <a href="#product" style={{backgroundColor:"#ED1703"}} className="--btn --btn-primary --color-danger">
                     Shop Now
-                  </a>
+                  </a> 
+                  </button>
+                  
                 </div>
               </>
             )}
