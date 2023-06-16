@@ -5,7 +5,6 @@
   
   .card {
     border: 1px solid #ccc;
-    // border-bottom: 3px solid var(--light-blue);
     padding: 5px;
     background-color: #f5f6fa;
   }
@@ -17,5 +16,5 @@
     border-bottom: 3px solid #1f93ff;
   }
   .card3 {
-    border-bottom: 3px solid orangered;
+    border-bottom: 3px solid var(--color-danger);
   }

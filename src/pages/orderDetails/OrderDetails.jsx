@@ -49,7 +49,7 @@ const OrderDetails = () => {
                 {order.cartItems.map((cart, index) => {
                   const { id, name, price, imageURL, cartQuantity } = cart;
                   return (
-                    <tr key={id}>
+                    <tr key={id} >
                       <td>
                         <b>{index + 1}</b>
                       </td>
@@ -66,12 +66,13 @@ const OrderDetails = () => {
                       <td>{price}</td>
                       <td>{cartQuantity}</td>
                       <td>{(price * cartQuantity).toFixed(2)}</td>
-                      <td className={styles.icons}>
-                        <Link to={`/review-product/${id}`}>
-                          <button className="--btn --btn-primary">
-                            Review Product
-                          </button>
-                        </Link>
+                      <td className={styles.icons} >
+                        
+                          <Link to={`/review-product/${id}`}>
+                            <button className="--btn --btn-danger">
+                              Review Product
+                            </button>
+                          </Link>
                       </td>
                     </tr>
                   );
