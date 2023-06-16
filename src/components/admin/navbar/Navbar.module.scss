@@ -30,6 +30,7 @@
   
   .active {
     cursor: pointer;
+    color:var(--color-danger)
   }
   
   .active::before {
@@ -39,5 +40,5 @@
     top: 0;
     width: 4px;
     height: 100%;
-    background-color: orangered;
+    background-color: var(--color-danger)
   }

@@ -37,6 +37,9 @@
   
       tr {
         border-bottom: 1px solid #ccc;
+        &:hover{
+          background-color: #c7c5c5;
+        }
       }
   
       tr:nth-child(even) {
