@@ -1,13 +1,17 @@
-.grid {
+.container {
+  cursor: pointer;
+   &:hover {
+      box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.2);
+      color: var(--color-danger) !important;
+    }
+  .grid {
     width: 24rem;
     background-color: #fff;
     margin: 5px;
-    height: 36rem;
+    height: 35rem;
     position: relative;
 
-    &:hover{
-      background-color:#eee ;
-    }
+   
     .img {
       padding: 1rem;
       width: 100%;
@@ -25,10 +29,10 @@
     .content {
       text-align: center;
       position: absolute;
-      bottom: 0;
+      bottom: 20;
       left: 0;
       width: 100%;
-  
+
       .details {
         // display: flex;
         // justify-content: space-between;
@@ -49,10 +53,10 @@
       }
     }
   }
-  
+
   .list {
     width: 100%;
-    height: 28rem;
+    height: 24rem;
     max-height: 32rem;
     display: flex;
     background-color: #fff;
@@ -72,7 +76,7 @@
         cursor: pointer;
       }
     }
-  
+
     .content {
       position: relative;
       padding: 1rem;
@@ -96,3 +100,4 @@
       }
     }
   }
+}
