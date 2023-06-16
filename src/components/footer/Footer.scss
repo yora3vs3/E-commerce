@@ -1,0 +1,104 @@
+.footer {
+  background-color: var(--dark-blue);
+  color: var( --primary-color);
+  width: device-width;
+  margin: 0px;
+  padding-bottom: 5px;
+  position: relative;
+  z-index: 3;
+  font-family: var( --font-family);
+
+  .top {
+    padding: 20px 20px 5px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    color: var(--primary-backround);
+    display: flex;
+    justify-content: space-around;
+
+    .company {
+      width: 250px;
+      color: var( --primary-color);
+
+      .slogan{
+         color: var( --primary-color);
+         font-size: 17px;
+        @media only screen and (max-width: 400px) {
+          font-size: 15px;
+        }
+      }
+      .source-code {
+        display: flex;
+        align-items: center;
+        padding: 4px 0;
+        font-size: 13px;
+
+        @media only screen and (max-width: 400px) {
+          font-size: 15px;
+        }
+      }
+
+      a {
+        color: var( --primary-color);
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+          color: white;
+        }
+      }
+      img {
+        width: 100px;
+      }
+    }
+
+    .developer {
+      @extend .company;
+      display: flex;
+      flex-direction: column;
+      width: 170px;
+
+      @media only screen and (max-width: 400px) {
+        width: fit-content;
+        margin-top:10px;
+      }
+
+      h5 {
+        font-size: 15px;
+        margin-bottom: 7px;
+        margin-top: 0;
+        color:#fff;
+        padding-left: 5px;
+        @media only screen and (max-width: 400px) {
+          font-size: 15px;
+        }
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        padding: 4px;
+        @media only screen and (max-width: 400px) {
+          font-size: 13px;
+        }
+      }
+    }
+
+    .privacy {
+      @extend .developer;
+    }
+
+    .categories {
+      p {
+        margin: 0;
+      }
+      @extend .developer;
+    }
+  }
+
+  .bottom {
+    color: rgb(213, 215, 213);
+    text-align: center;
+    width: 100%;
+  }
+}

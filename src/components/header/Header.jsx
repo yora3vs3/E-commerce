@@ -23,7 +23,7 @@ import logoImg from "./wazibiz-low-resolution-logo-color-on-transparent-backgrou
 const logo = (
   <div className={styles.logo}>
     <Link to="/">
-       <img src={logoImg} alt="wazibiz" logo />
+      <img src={logoImg} alt="wazibiz"  />
     </Link>
   </div>
 );
