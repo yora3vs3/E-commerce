@@ -43,7 +43,7 @@
         background-color:#e5e2e2;
       }
       .pending {
-        color: orangered;
+        color: var(--color-danger);
         font-weight: 500;
       }
       .delivered {
