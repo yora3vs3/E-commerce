@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Footer.scss";
 import { Link } from "react-router-dom";
-import logo from "./wazibiz-low-resolution-logo-white-on-black-background.png";
+import logo from "./wazibiz-low-resolution-logo-white-on-transparent-background.png";
 import { FiExternalLink } from 'react-icons/fi';
 import { FaTwitter, FaLinkedin,FaFacebook ,FaInstagram,FaGooglePlay} from "react-icons/fa";
 import { HiTrendingUp } from "react-icons/hi";
@@ -19,7 +19,7 @@ const Footer = () => {
     <footer className='footer'>
       <div className='top'>
         <div className='company'>
-          <Link to="/" ><img src={logo} alt="logo" /></Link>
+          <Link to="/" ><img src={logo} alt="logo" className="logo"/></Link>
           <p className='slogan'>Shop Smart, shop WaziBiz</p>
           <Link className='source-code' to="/">
             <FaGooglePlay size={20} />&nbsp;

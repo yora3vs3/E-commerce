@@ -18,7 +18,7 @@ import {
   CALCULATE_TOTAL_QUANTITY,
   selectCartTotalQuantity,
 } from "../../redux/slice/cartSlice";
-import logoImg from "./wazibiz-low-resolution-logo-color-on-transparent-background.png"
+import logoImg from "./wazibiz-high-resolution-logo-color-on-transparent-background.png"
 
 const logo = (
   <div className={styles.logo}>

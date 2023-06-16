@@ -19,9 +19,13 @@
     .company {
       width: 250px;
       color: var(--primary-color);
+      .logo{
+        width: 150px;
+        margin-bottom: 15px;
+      }
 
       .slogan {
-        color: var(--primary-color);
+        color: #ccc;
         font-size: 17px;
         @media only screen and (max-width: 400px) {
           font-size: 15px;
@@ -32,6 +36,7 @@
         align-items: center;
         padding: 4px 0;
         font-size: 13px;
+        color: #ccc;
 
         @media only screen and (max-width: 400px) {
           font-size: 15px;
@@ -41,6 +46,7 @@
       a {
         color: var(--primary-color);
         text-decoration: none;
+        color: #ccc;
 
         &:hover {
           text-decoration: underline;
