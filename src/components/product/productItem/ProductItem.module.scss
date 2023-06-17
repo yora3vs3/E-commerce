@@ -1,9 +1,9 @@
 .container {
   cursor: pointer;
-   &:hover {
-      box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.2);
-      color: var(--color-danger) !important;
-    }
+  &:hover {
+    box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.2);
+    color: var(--color-danger) !important;
+  }
   .grid {
     width: 24rem;
     background-color: #fff;
@@ -11,7 +11,12 @@
     height: 35rem;
     position: relative;
 
-   
+    @media only screen and (max-width: 400px) {
+      width: 15rem;
+      margin: 1px;
+      height: 28rem;
+    }
+
     .img {
       padding: 1rem;
       width: 100%;
