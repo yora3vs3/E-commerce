@@ -50,16 +50,16 @@ const ProductDetails = () => {
           <Link to="/#products">&larr; Back To Products</Link>
         </div>
         {product === null ? (
-          <img src={spinnerImg} alt="Loading" style={{ width:"40px" }} />
+          <img src={spinnerImg} alt="Loading" style={{ width: "50px" }} />
         ) : (
           <>
             <div className={styles.details}>
               <div className={styles.img}>
-                <img src={product.imageURL} alt={product.name} />
+                <img  src={product.imageURL} alt={product.name} />
               </div>
               <div className={styles.content}>
                 <h3>{product.name}</h3>
-                <p className={styles.price}>{`$${product.price}`}</p>
+                <p className={styles.price}><bold style={{color:"black"}}>Price:&nbsp;</bold>{`$${product.price}`}</p>
                 <p>{product.desc}</p>
                 <p>
                   <b>SKU</b> {product.id}

@@ -1,7 +1,8 @@
 .product {
+  margin-top: -20px;
     .card {
-      padding: 1rem;
-      margin-top: 1rem;
+      padding: .7rem;
+      margin-top: 0rem;
     }
     .review {
       border-top: 1px solid #ccc;
@@ -11,7 +12,7 @@
       display: flex;
   
       .img {
-        width: 45%;
+        width: 40%;
         border: 1px solid #ccc;
         border-radius: 3px;
         img {
@@ -21,7 +22,8 @@
   
       .content {
         width: 55%;
-        padding: 0 5px;
+        padding: 0 5px 0 15px;
+
         & > * {
           margin-bottom: 1rem;
         }
