@@ -98,8 +98,6 @@ const AddProduct = () => {
     e.preventDefault();
     setIsLoading(true);
 
-
-
     try {
       setDoc(doc(db, "products", id), {
         name: product.name,
