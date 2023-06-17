@@ -84,7 +84,7 @@ const ReviewProducts = () => {
               cols="30"
               rows="10"
             ></textarea>
-            <button type="submit" className="--btn --btn-primary">
+            <button type="submit" className="--btn --btn-danger">
               Submit Review
             </button>
           </form>
