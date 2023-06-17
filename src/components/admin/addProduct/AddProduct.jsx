@@ -1,10 +1,5 @@
 import { addDoc, collection, doc, setDoc, Timestamp } from "firebase/firestore";
-import {
-  deleteObject,
-  getDownloadURL,
-  ref,
-  uploadBytesResumable,
-} from "firebase/storage";
+import { deleteObject, getDownloadURL, ref, uploadBytesResumable, } from "firebase/storage";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -14,27 +9,14 @@ import Card from "../../card/Card";
 import Loader from "../../loader/Loader";
 import styles from "./AddProduct.module.scss";
 import { selectProducts } from "../../../redux/slice/productSlice";
+import { categories, getImageFilename, initialState } from "./utiles";
+import Product from "../../product/Product";
 
-const categories = [
-  { id: 1, name: "Laptop" },
-  { id: 2, name: "Electronics" },
-  { id: 3, name: "Fashion" },
-  { id: 4, name: "Phone" },
-];
-
-const initialState = {
-  name: "",
-  imageURL: "",
-  price: 0,
-  category: "",
-  brand: "",
-  desc: "",
-};
 
 const AddProduct = () => {
   const { id } = useParams();
   const products = useSelector(selectProducts);
-  const productEdit = products.find((item) => item.id === id);
+  const productEdit = products.find((item) => item.id === id)| null;
 
   const [product, setProduct] = useState(() => {
     const newState = detectForm(id, { ...initialState }, productEdit);
@@ -46,33 +28,23 @@ const AddProduct = () => {
   const navigate = useNavigate();
 
   function detectForm(id, f1, f2) {
-    if (id === "ADD") {
-      return f1;
-    }
+    if (id === "ADD") return f1;
     return f2;
   }
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+  const handleInputChange = ({target:{ name, value }}) => {
     setProduct({ ...product, [name]: value });
   };
 
-  const  getImageFilename = (url) =>{
-    const filenameWithParams = url.substring(url.lastIndexOf('%') + 1);
-    const filename = filenameWithParams.split('?')[0];
-  
-    return filename;
-  }
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    // console.log(file);
-    if (product.imageURL !== productEdit.imageURL) {
-      const delRef = ref(storage,`eshop/${getImageFilename(productEdit.imageURL)}` );
-      deleteObject (delRef);
-      
-    }
 
+    if (productEdit?.imageURL || Product?.imageURL) {
+      const delImageRef = ref(storage, `eshop/${getImageFilename(productEdit?.imageURL ?? productEdit?.imageURL)}`);
+      deleteObject(delImageRef);
+    }
+ 
     const storageRef = ref(storage, `eshop/${Date.now()}${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -126,7 +98,7 @@ const AddProduct = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    
+
 
     try {
       setDoc(doc(db, "products", id), {
@@ -166,37 +138,37 @@ const AddProduct = () => {
             />
 
             <label>Product image:</label>
-              {uploadProgress === 0 ? null : (
-                <div className={styles.progress}>
-                  <div
-                    className={styles["progress-bar"]}
-                    style={{ width: `${uploadProgress}%` }}
-                  >
-                    {uploadProgress < 100
-                      ? `Uploading ${uploadProgress}`
-                      : `Upload Complete ${uploadProgress}%`}
-                  </div>
+            {uploadProgress === 0 ? null : (
+              <div className={styles.progress}>
+                <div
+                  className={styles["progress-bar"]}
+                  style={{ width: `${uploadProgress}%` }}
+                >
+                  {uploadProgress < 100
+                    ? `Uploading ${uploadProgress}`
+                    : `Upload Complete ${uploadProgress}%`}
                 </div>
-              )}
+              </div>
+            )}
 
+            <input
+              type="file"
+              accept="image/*"
+              placeholder="Product Image"
+              name="image"
+              onChange={(e) => handleImageChange(e)}
+            />
+
+            {product.imageURL === "" ? null : (
               <input
-                type="file"
-                accept="image/*"
-                placeholder="Product Image"
-                name="image"
-                onChange={(e) => handleImageChange(e)}
+                type="text"
+                // required
+                placeholder="Image URL"
+                name="imageURL"
+                value={product.imageURL}
+                disabled
               />
-
-              {product.imageURL === "" ? null : (
-                <input
-                  type="text"
-                  // required
-                  placeholder="Image URL"
-                  name="imageURL"
-                  value={product.imageURL}
-                  disabled
-                />
-              )}
+            )}
 
             <label>Product price:</label>
             <input

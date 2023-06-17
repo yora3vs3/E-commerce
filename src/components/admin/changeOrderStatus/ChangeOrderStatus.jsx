@@ -63,7 +63,7 @@ const ChangeOrderStatus = ({ order, id }) => {
               </select>
             </span>
             <span>
-              <button type="submit" className="--btn --btn-primary">
+              <button type="submit" className="--btn --btn-danger">
                 Update Status
               </button>
             </span>

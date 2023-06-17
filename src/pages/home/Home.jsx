@@ -11,7 +11,7 @@ const Home = () => {
     const scrollToProducts = () => {
       if (url.includes("#products")) {
         window.scrollTo({
-          top: 700,
+          top: 400,
           behavior: "smooth",
         });
         return;

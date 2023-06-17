@@ -9,18 +9,12 @@ import Loader from "../../loader/Loader";
 import { deleteObject, ref } from "firebase/storage";
 import Notiflix from "notiflix";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  selectProducts,
-  STORE_PRODUCTS,
-} from "../../../redux/slice/productSlice";
+import { Zoom } from "react-awesome-reveal";
+import { FILTER_BY_SEARCH, selectFilteredProducts } from "../../../redux/slice/filterSlice";
+import { STORE_PRODUCTS, selectProducts } from "../../../redux/slice/productSlice";
 import useFetchCollection from "../../../customHooks/useFetchCollection";
-import {
-  FILTER_BY_SEARCH,
-  selectFilteredProducts,
-} from "../../../redux/slice/filterSlice";
 import Search from "../../search/Search";
 import Pagination from "../../pagination/Pagination";
-import { Zoom } from "react-awesome-reveal";
 
 const ViewProducts = () => {
   const [search, setSearch] = useState("");
@@ -29,7 +23,7 @@ const ViewProducts = () => {
   const filteredProducts = useSelector(selectFilteredProducts);
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage, setProductsPerPage] = useState(10);
+  const [productsPerPage, ] = useState(10);
 
   const [showBtn, setShowBtn] = useState(-1);
   // Get Current Products

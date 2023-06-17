@@ -15,10 +15,11 @@ import OrderHistory from "./pages/orderHistory/OrderHistory";
 import OrderDetails from "./pages/orderDetails/OrderDetails";
 import ReviewProducts from "./components/reviewProducts/ReviewProducts";
 import NotFound from "./pages/notFound/NotFound";
+import "./App.scss"
 
 function App() {
   return (
-    <>
+    < div className="app">
       <BrowserRouter>
         <ToastContainer />
         <Header />
@@ -50,7 +51,7 @@ function App() {
         </Routes>
         <Footer />
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 
