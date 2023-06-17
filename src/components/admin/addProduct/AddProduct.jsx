@@ -1,5 +1,5 @@
 import { addDoc, collection, doc, setDoc, Timestamp } from "firebase/firestore";
-import { deleteObject, getDownloadURL, ref, uploadBytesResumable, } from "firebase/storage";
+import {  getDownloadURL, ref, uploadBytesResumable, } from "firebase/storage";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -9,14 +9,14 @@ import Card from "../../card/Card";
 import Loader from "../../loader/Loader";
 import styles from "./AddProduct.module.scss";
 import { selectProducts } from "../../../redux/slice/productSlice";
-import { categories, getImageFilename, initialState } from "./utiles";
+import { categories,  initialState } from "./utiles";
 import Product from "../../product/Product";
 
 
 const AddProduct = () => {
   const { id } = useParams();
   const products = useSelector(selectProducts);
-  const productEdit = products.find((item) => item.id === id)| null;
+  const productEdit = products.find((item) => item.id === id);
 
   const [product, setProduct] = useState(() => {
     const newState = detectForm(id, { ...initialState }, productEdit);
@@ -36,14 +36,14 @@ const AddProduct = () => {
     setProduct({ ...product, [name]: value });
   };
 
-
+console.log(Date.now());
   const handleImageChange = (e) => {
     const file = e.target.files[0];
 
-    if (productEdit?.imageURL || Product?.imageURL) {
-      const delImageRef = ref(storage, `eshop/${getImageFilename(productEdit?.imageURL ?? productEdit?.imageURL)}`);
-      deleteObject(delImageRef);
-    }
+    // if (productEdit?.imageURL || Product?.imageURL) {
+    //   const delImageRef = ref(storage, `eshop/${getImageFilename(productEdit?.imageURL ?? productEdit?.imageURL)}`);
+    //   deleteObject(delImageRef);
+    // }
  
     const storageRef = ref(storage, `eshop/${Date.now()}${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);

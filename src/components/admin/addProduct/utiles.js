@@ -15,8 +15,10 @@ export const initialState = {
 };
 
 export const getImageFilename = (url) => {
-    const filenameWithParams = url.substring(url.lastIndexOf('%') + 1);
+    const filenameWithParams = url.substring(url.lastIndexOf('/') + 1);
     const filename = filenameWithParams.split('?')[0];
-
-    return filename;
+    const modifiedFilename = filename.replace('eshop%2F', '').split('')[0];
+  
+    return modifiedFilename;
   }
+  

@@ -1,6 +1,6 @@
 import { deleteDoc, doc } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { db, storage } from "../../../firebase/config";
 import styles from "./ViewProducts.module.scss";
@@ -26,6 +26,7 @@ const ViewProducts = () => {
   const [productsPerPage, ] = useState(10);
 
   const [showBtn, setShowBtn] = useState(-1);
+  const navigate = useNavigate();
   // Get Current Products
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -115,7 +116,9 @@ const ViewProducts = () => {
                   <tr
                     key={id}
                     onMouseLeave={() => setShowBtn(-1)}
-                    onMouseEnter={() => setShowBtn(id)}>
+                    onMouseEnter={() => setShowBtn(id)}
+                    // onClick={()=>navigate(`/product-details/${id}`)}
+                    >
                     <td>{index + 1}</td>
                     <td>
                       <img
