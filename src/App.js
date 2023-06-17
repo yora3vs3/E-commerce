@@ -16,10 +16,12 @@ import OrderDetails from "./pages/orderDetails/OrderDetails";
 import ReviewProducts from "./components/reviewProducts/ReviewProducts";
 import NotFound from "./pages/notFound/NotFound";
 import "./App.scss"
+import ScrollToTop from "react-scroll-to-top";
 
 function App() {
   return (
     < div className="app">
+       <ScrollToTop style={{backgroundColor:"#ED1703",zIndex:7}} smooth color="#eeeee4"/>
       <BrowserRouter>
         <ToastContainer />
         <Header />
