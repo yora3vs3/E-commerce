@@ -10,7 +10,6 @@ import Loader from "../../loader/Loader";
 import styles from "./AddProduct.module.scss";
 import { selectProducts } from "../../../redux/slice/productSlice";
 import { categories,  initialState } from "./utiles";
-import Product from "../../product/Product";
 
 
 const AddProduct = () => {
