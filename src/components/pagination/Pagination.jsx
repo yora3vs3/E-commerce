@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Pagination.module.scss";
 
-const Pagination = ({
-    currentPage,
-    setCurrentPage,
-    productsPerPage,
-    totalProducts,
-}) => {
+const Pagination = ({ currentPage, setCurrentPage, productsPerPage, totalProducts, }) => {
     const pageNumbers = [];
     const totalPages = totalProducts / productsPerPage;
     // Limit the page Numbers shown

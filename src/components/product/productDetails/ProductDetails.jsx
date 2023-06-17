@@ -50,7 +50,7 @@ const ProductDetails = () => {
           <Link to="/#products">&larr; Back To Products</Link>
         </div>
         {product === null ? (
-          <img src={spinnerImg} alt="Loading" style={{ width: "50px" }} />
+          <img src={spinnerImg} alt="Loading" style={{ width:"40px" }} />
         ) : (
           <>
             <div className={styles.details}>
