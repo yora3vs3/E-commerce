@@ -44,7 +44,7 @@ const OrderHistory = () => {
                                     <tr>
                                         <th>s/n</th>
                                         <th>Date</th>
-                                        <th>Order ID</th>
+                                        <th className={styles.idTitle}>Order ID</th>
                                         <th>Order Amount</th>
                                         <th>Order Status</th>
                                     </tr>
@@ -64,7 +64,7 @@ const OrderHistory = () => {
                                                 <td>
                                                     {orderDate} at {orderTime}
                                                 </td>
-                                                <td>{id}</td>
+                                                <td className={styles.orderId}>{id}</td>
                                                 <td>
                                                     {"$"}
                                                     {orderAmount}

@@ -12,10 +12,17 @@
       thead {
         border-top: 2px solid var(--light-blue);
         border-bottom: 2px solid var(--light-blue);
+
+        .idTitle{
+          @media only screen and (max-width: 400px) {
+            display: none;
+          }
+        }
       }
   
       th {
         border: 1px solid #eee;
+        
       }
   
       th,
@@ -36,8 +43,17 @@
         cursor: pointer;
         &:hover{
           background-color: #c7c5c5;
+        } 
+        
+        .orderId  {
+        @media only screen and (max-width: 400px) {
+          display: none;
         }
       }
+
+      }
+
+     
   
       tr:nth-child(even) {
         background-color:#e5e2e2;
