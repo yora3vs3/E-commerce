@@ -1,4 +1,4 @@
-# WaziBiz Online Shopping Site
+# WaziBiz Online Shopping Site || Visit the server side repository [here](https://github.com/kiptanuiBoaz/wazibiz-server)
 
 WaziBiz is an online shopping site that allows users to browse and purchase a wide range of products. It provides a seamless shopping experience with a user-friendly interface and secure payment processing through Stripe. The site also includes an admin dashboard for managing products and orders.
 
