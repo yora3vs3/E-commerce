@@ -5,7 +5,7 @@ const initialState = {
 };
 
 const paymentSlice = createSlice({
-    name: "product",
+    name: "payment",
     initialState,
     reducers: {
         SET_PAYMENT_METHOD(state, action) {
@@ -17,6 +17,6 @@ const paymentSlice = createSlice({
 
 export const {SET_PAYMENT_METHOD } = paymentSlice.actions;
 
-export const selectPaymentMethod= (state) => state.paymentMethod;
+export const selectPaymentMethod= (state) => state.payment.paymentMethod;
 
 export default paymentSlice.reducer;

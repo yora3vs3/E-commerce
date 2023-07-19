@@ -15,7 +15,7 @@ const store = configureStore({
     cart: cartReducer,
     checkout: checkoutReducer,
     orders: orderReducer,
-    paymentMethod: paymentReducer
+    payment: paymentReducer
   },
 
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
