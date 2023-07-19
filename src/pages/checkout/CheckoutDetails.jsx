@@ -9,6 +9,8 @@ import {
   SAVE_SHIPPING_ADDRESS,
 } from "../../redux/slice/checkoutSlice";
 import styles from "./CheckoutDetails.module.scss";
+import checkoutImg from "../../assets/cared-checkout.jpg"
+import mpesa from "../../assets/mpesa.png";
 
 const initialAddressState = {
   name: "",
@@ -22,15 +24,16 @@ const initialAddressState = {
 };
 
 const CheckoutDetails = () => {
-  const [shippingAddress, setShippingAddress] = useState({
-    ...initialAddressState,
-  });
-  const [billingAddress, setBillingAddress] = useState({
-    ...initialAddressState,
-  });
+  const [shippingAddress, setShippingAddress] = useState({ ...initialAddressState });
+  const [billingAddress, setBillingAddress] = useState({ ...initialAddressState });
+  const [paymentMethod, setPaymentMethod] = useState();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+
+
+
 
   const handleShipping = (e) => {
     const { name, value } = e.target;
@@ -49,10 +52,10 @@ const CheckoutDetails = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(SAVE_SHIPPING_ADDRESS(shippingAddress));
-    dispatch(SAVE_BILLING_ADDRESS(billingAddress));
-    navigate("/checkout");
+    e.preventDefault();  console.log(paymentMethod)
+    // dispatch(SAVE_SHIPPING_ADDRESS(shippingAddress));
+    // dispatch(SAVE_BILLING_ADDRESS(billingAddress));
+    // navigate("/checkout");
   };
 
   return (
@@ -219,15 +222,38 @@ const CheckoutDetails = () => {
                 value={billingAddress.phone}
                 onChange={(e) => handleBilling(e)}
               />
-              <button type="submit" className="--btn --btn-danger">
-                Proceed To Checkout
-              </button>
+
             </Card>
           </div>
           <div>
             <Card cardClass={styles.card}>
               <CheckoutSummary />
             </Card>
+
+            <div className={styles["payment-options-container"]}>
+              <h3 className="payment-title">Select a Payment Method:</h3>
+
+              <div className={styles["radio-group"]}>
+                <input onChange={() => setPaymentMethod("card")} className="option-input" type="radio" id="cardPayment" name="paymentMethod" value="card"  ></input>
+                <label  className="option-label" htmlFor="cardPayment">
+                  <span>Card Checkout via Stripe </span>
+                  <img src={checkoutImg} alt="card logo" />
+                </label>
+              </div>
+
+              <div className={styles["radio-group"]}>
+                <input onChange={() => setPaymentMethod("mpesa")} className="option-input" type="radio" id="mpesaPayment" name="paymentMethod" value="mpesa"></input>
+                <label  className="option-label" htmlFor="mpesaPayment">
+                  <span>Mobile Payment via M-Pesa</span>
+                  <img src={mpesa} alt="mpesa logo" />
+                </label>
+              </div>
+
+            </div>
+
+            <button type="submit" className="--btn --btn-danger">
+              Proceed To Checkout
+            </button>
           </div>
         </form>
       </div>
