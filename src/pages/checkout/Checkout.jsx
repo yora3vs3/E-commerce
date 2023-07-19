@@ -9,6 +9,9 @@ import { selectBillingAddress, selectShippingAddress, } from "../../redux/slice/
 import { toast } from "react-toastify";
 import CheckoutForm from "../../components/checkoutForm/CheckoutForm";
 import Axios from "axios";
+import mpesalogo from "../../assets/mpesa.png";
+import "./checkout.scss";
+import Card from "../../components/card/Card";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 
@@ -111,26 +114,27 @@ const Checkout = () => {
       )}
 
       {paymentMethod === "mpesa" && <div>
-        <div className="  mt-10 justify-center items-center  flex flex-col">
-          <h1 className="text-2xl">
-            Pay with <span className="text-green-600  font-bold">Mpesa</span>
-          </h1>
-          <form className="flex flex-col space-y-5">
-            <input
-              onChange={(e) => setPhone(e.target.value)}
-              placeholder="Phone"
-              className=" bg-slate-100 py-1 px-2 outline-none text-center rounded-xl"
-            />
-            <button
-              onClick={payHandler}
-              className="bg-green-600 text-white px-2 py-1 rounded-2xl"
-            >
-              {buttonText}
-            </button>
-          </form>
+        <div className="mpesa-checkout-container">
+          <img src={mpesalogo} alt="mpesa logo" className="mpesa-logo" />
+          <h2 className="text-2xl">
+            Pay with <span className="text">Mpesa</span>
+          </h2>
+          <Card>
+            <form className="mpesa-form">
+              <input
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="Phone"
+                className="phone-input"
+              />
+              <button
+                onClick={payHandler}
+                className="pay-button"
+              >
+                {buttonText}
+              </button>
+            </form>
 
-
-
+          </Card>
 
         </div>
       </div>}
