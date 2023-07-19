@@ -66,6 +66,7 @@ const CheckoutForm = () => {
             shippingAddress,
             createdAt: Timestamp.now().toDate(),
         };
+        
         try {
             addDoc(collection(db, "orders"), orderConfig);
             dispatch(CLEAR_CART());

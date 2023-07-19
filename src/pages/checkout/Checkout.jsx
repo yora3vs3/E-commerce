@@ -2,22 +2,13 @@ import React, { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  CALCULATE_SUBTOTAL,
-  CALCULATE_TOTAL_QUANTITY,
-  selectCartItems,
-  selectCartTotalAmount,
-} from "../../redux/slice/cartSlice";
+import { CALCULATE_SUBTOTAL, CALCULATE_TOTAL_QUANTITY, selectCartItems, selectCartTotalAmount, } from "../../redux/slice/cartSlice";
 import { selectEmail } from "../../redux/slice/authSlice";
-import {
-  selectBillingAddress,
-  selectShippingAddress,
-} from "../../redux/slice/checkoutSlice";
+import { selectBillingAddress, selectShippingAddress, } from "../../redux/slice/checkoutSlice";
 import { toast } from "react-toastify";
 import CheckoutForm from "../../components/checkoutForm/CheckoutForm";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
-
 
 const Checkout = () => {
   const [message, setMessage] = useState("Initializing checkout...");
@@ -52,11 +43,12 @@ const Checkout = () => {
         description,
       }),
     })
-      .then((res) => {
+      .then(async (res) => {
         if (res.ok) {
           return res.json();
         }
-        return res.json().then((json) => Promise.reject(json));
+        const json = await res.json();
+        return await Promise.reject(json);
       })
       .then((data) => {
         setClientSecret(data.clientSecret);
@@ -80,10 +72,10 @@ const Checkout = () => {
       <section>
         <div className="container">{!clientSecret && <h3>{message}</h3>}</div>
       </section>
-      {clientSecret && (
-        <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
-        </Elements>
+
+      {clientSecret && (<Elements options={options} stripe={stripePromise}>
+        <CheckoutForm />
+      </Elements>
       )}
     </>
   );

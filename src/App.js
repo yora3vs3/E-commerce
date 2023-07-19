@@ -21,7 +21,7 @@ import ScrollToTop from "react-scroll-to-top";
 function App() {
   return (
     < div className="app">
-       <ScrollToTop style={{backgroundColor:"#ED1703",zIndex:7}} smooth color="#eeeee4"/>
+      <ScrollToTop style={{ backgroundColor: "#ED1703", zIndex: 7 }} smooth color="#eeeee4" />
       <BrowserRouter>
         <ToastContainer />
         <Header />

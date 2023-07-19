@@ -4,13 +4,11 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Card from "../../components/card/Card";
 import CheckoutSummary from "../../components/checkoutSummary/CheckoutSummary.jsx";
-import {
-  SAVE_BILLING_ADDRESS,
-  SAVE_SHIPPING_ADDRESS,
-} from "../../redux/slice/checkoutSlice";
+import { SAVE_BILLING_ADDRESS, SAVE_SHIPPING_ADDRESS, } from "../../redux/slice/checkoutSlice";
 import styles from "./CheckoutDetails.module.scss";
 import checkoutImg from "../../assets/cared-checkout.jpg"
 import mpesa from "../../assets/mpesa.png";
+import { SET_PAYMENT_METHOD } from "../../redux/slice/paymentSlice";
 
 const initialAddressState = {
   name: "",
@@ -31,10 +29,6 @@ const CheckoutDetails = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-
-
-
-
   const handleShipping = (e) => {
     const { name, value } = e.target;
     setShippingAddress({
@@ -52,10 +46,11 @@ const CheckoutDetails = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();  console.log(paymentMethod)
-    // dispatch(SAVE_SHIPPING_ADDRESS(shippingAddress));
-    // dispatch(SAVE_BILLING_ADDRESS(billingAddress));
-    // navigate("/checkout");
+    e.preventDefault();
+    dispatch(SET_PAYMENT_METHOD(paymentMethod))
+    dispatch(SAVE_SHIPPING_ADDRESS(shippingAddress));
+    dispatch(SAVE_BILLING_ADDRESS(billingAddress));
+    navigate("/checkout");
   };
 
   return (
@@ -235,7 +230,7 @@ const CheckoutDetails = () => {
 
               <div className={styles["radio-group"]}>
                 <input onChange={() => setPaymentMethod("card")} className="option-input" type="radio" id="cardPayment" name="paymentMethod" value="card"  ></input>
-                <label  className="option-label" htmlFor="cardPayment">
+                <label className="option-label" htmlFor="cardPayment">
                   <span>Card Checkout via Stripe </span>
                   <img src={checkoutImg} alt="card logo" />
                 </label>
@@ -243,7 +238,7 @@ const CheckoutDetails = () => {
 
               <div className={styles["radio-group"]}>
                 <input onChange={() => setPaymentMethod("mpesa")} className="option-input" type="radio" id="mpesaPayment" name="paymentMethod" value="mpesa"></input>
-                <label  className="option-label" htmlFor="mpesaPayment">
+                <label className="option-label" htmlFor="mpesaPayment">
                   <span>Mobile Payment via M-Pesa</span>
                   <img src={mpesa} alt="mpesa logo" />
                 </label>
