@@ -229,7 +229,16 @@ const CheckoutDetails = () => {
               <h3 className="payment-title">Select a Payment Method:</h3>
 
               <div className={styles["radio-group"]}>
-                <input onChange={() => setPaymentMethod("card")} className="option-input" type="radio" id="cardPayment" name="paymentMethod" value="card"  ></input>
+                <input
+                  onChange={() => setPaymentMethod("card")}
+                  required
+                  className="option-input"
+                  type="radio"
+                  id="cardPayment"
+                  name="paymentMethod"
+                  value="card"  >
+
+                </input>
                 <label className="option-label" htmlFor="cardPayment">
                   <span>Card Checkout via Stripe </span>
                   <img src={checkoutImg} alt="card logo" />
@@ -237,7 +246,16 @@ const CheckoutDetails = () => {
               </div>
 
               <div className={styles["radio-group"]}>
-                <input onChange={() => setPaymentMethod("mpesa")} className="option-input" type="radio" id="mpesaPayment" name="paymentMethod" value="mpesa"></input>
+                <input
+                  onChange={() => setPaymentMethod("mpesa")}
+                  required
+                  className="option-input"
+                  type="radio"
+                  id="mpesaPayment"
+                  name="paymentMethod"
+                  value="mpesa">
+
+                </input>
                 <label className="option-label" htmlFor="mpesaPayment">
                   <span>Mobile Payment via M-Pesa</span>
                   <img src={mpesa} alt="mpesa logo" />
