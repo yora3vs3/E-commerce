@@ -6,7 +6,8 @@
   padding-bottom: 5px;
   position: relative;
   z-index: 3;
-  font-family: var(--font-family);
+  font-family: "Lora", serif;
+  font-size: 3rem;
 
   .top {
     padding: 20px 20px 5px 20px;
@@ -70,7 +71,7 @@
       }
 
       h5 {
-        font-size: 15px;
+        font-size: 19px;
         margin-bottom: 7px;
         margin-top: 0;
         color: #fff;
@@ -84,6 +85,7 @@
         display: flex;
         align-items: center;
         padding: 2px;
+        font-size: 17px;
         @media only screen and (max-width: 400px) {
           font-size: 13px;
         }
