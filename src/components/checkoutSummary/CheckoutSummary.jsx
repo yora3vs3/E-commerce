@@ -32,16 +32,16 @@ const CheckoutSummary = () => {
             </p>
             <div className={styles.text}>
               <h4>Subtotal:</h4>
-              <h3>{cartTotalAmount.toFixed(2)}</h3>
+              <h3>Ksh {cartTotalAmount.toFixed(2)}</h3>
             </div>
             {cartItems.map((item, index) => {
               const { id, name, price, cartQuantity } = item;
               return (
                 <Card key={id} cardClass={styles.card}>
-                  <h4>Product: {name}</h4>
-                  <p>Quantity: {cartQuantity}</p>
-                  <p>Unit price: {price}</p>
-                  <p>Set price: {price * cartQuantity}</p>
+                  <h4>Product:  {name}</h4>
+                  <p>Quantity:  {cartQuantity}</p>
+                  <p>Unit price: Ksh {price}</p>
+                  <p>Set price: Ksh {price * cartQuantity}</p>
                 </Card>
               );
             })}

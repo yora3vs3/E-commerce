@@ -1,6 +1,6 @@
 import { deleteDoc, doc } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { db, storage } from "../../../firebase/config";
 import styles from "./ViewProducts.module.scss";
@@ -23,17 +23,16 @@ const ViewProducts = () => {
   const filteredProducts = useSelector(selectFilteredProducts);
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage, ] = useState(10);
+  const [productsPerPage,] = useState(10);
 
   const [showBtn, setShowBtn] = useState(-1);
   // Get Current Products
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(
@@ -116,32 +115,32 @@ const ViewProducts = () => {
                     key={id}
                     onMouseLeave={() => setShowBtn(-1)}
                     onMouseEnter={() => setShowBtn(id)}
-                    // onClick={()=>navigate(`/product-details/${id}`)}
-                    >
+                
+                  >
                     <td>{index + 1}</td>
-                    <td>
+                    <td   onClick={()=>navigate(`/product-details/${id}`)}>
                       <img
                         src={imageURL}
                         alt={name}
                         style={{ width: "100px" }}
                       />
                     </td>
-                    <td>{name}</td>
+                    <td   onClick={()=>navigate(`/product-details/${id}`)}>{name}</td>
                     <td>{category}</td>
-                    <td>{`$${price}`}</td>
+                    <td>{`Ksh ${price}`}</td>
 
                     <td className={styles.icons}>
                       {showBtn === id && <Zoom>
                         <div className={styles.icons}>
-                        <Link to={`/admin/add-product/${id}`}>
-                          <FaEdit size={20} color="green" />
-                        </Link>
-                        &nbsp;
-                        <FaTrashAlt
-                          size={18}
-                          color="red"
-                          onClick={() => confirmDelete(id, imageURL)}
-                        /> </div>
+                          <Link to={`/admin/add-product/${id}`}>
+                            <FaEdit size={20} color="green" />
+                          </Link>
+                          &nbsp;
+                          <FaTrashAlt
+                            size={18}
+                            color="red"
+                            onClick={() => confirmDelete(id, imageURL)}
+                          /> </div>
                       </Zoom>}
                     </td>
                   </tr>

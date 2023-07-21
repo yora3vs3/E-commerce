@@ -1,0 +1,46 @@
+.checkout {
+  display: flex;
+  flex-direction: row;
+justify-content: space-around;
+  flex-wrap: wrap;
+  .mpesa-checkout-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px 0 40px;
+    width: fit-content;
+    .mpesa-logo {
+      width: 200px;
+      height: auto;
+    }
+    .text {
+      color: green;
+    }
+    .mpesa-form {
+      .phone-input {
+        padding: 8px;
+        width: 250px;
+        border-radius: 4px;
+      }
+
+      .pay-button {
+        padding: 8px 12px;
+        background-color: green;
+        color: #fff;
+        border-color: green;
+        margin-left: 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        &:hover {
+          background-color: rgb(2, 83, 2);
+        }
+      }
+    }
+  }
+}
+
+h2{
+  text-align: center;
+  margin-bottom: 15px;
+}

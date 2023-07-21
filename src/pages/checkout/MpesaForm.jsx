@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import mpesalogo from "../../assets/mpesa.png";
-import "./checkout.scss";
+import "./mpesa-checkout.scss";
 import Card from "../../components/card/Card";
 import Axios from "axios";
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,6 +11,8 @@ import { Timestamp, addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase/config';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import CheckoutSummary from '../../components/checkoutSummary/CheckoutSummary';
+import styles from "../../components/checkoutForm/CheckoutForm.module.scss";
 
 const MpesaForm = () => {
     const [phone, setPhone] = useState();
@@ -77,8 +79,15 @@ const MpesaForm = () => {
     };
 
 
-    return (
-        <div>
+    return(<>
+        <h2 >Checkout</h2>
+        <div className='checkout'>
+            <div className='card-summary'>
+                <Card cardClass={styles.card}>
+                    <CheckoutSummary />
+                </Card>
+            </div>
+
             <div className="mpesa-checkout-container">
                 <img src={mpesalogo} alt="mpesa logo" className="mpesa-logo" />
                 {data ? <h4>Request accepted for processing</h4> : <h2>Pay with <span className="text">Mpesa</span></h2>}
@@ -104,6 +113,7 @@ const MpesaForm = () => {
 
             </div>
         </div>
+    </>
     )
 }
 

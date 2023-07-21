@@ -29,9 +29,7 @@ const OrderHistory = () => {
         <section>
             <div className={`container ${styles.order}`}>
                 <h2>Your Order History</h2>
-                <p>
-                    Open an order to leave a <b>Product Review</b>
-                </p>
+                <p> Open an order to leave a <b>Product Review</b></p>
                 <br />
                 <>
                     {isLoading && <Loader />}
@@ -66,7 +64,7 @@ const OrderHistory = () => {
                                                 </td>
                                                 <td className={styles.orderId}>{id}</td>
                                                 <td>
-                                                    {"$"}
+                                                    {"Ksh"}{" "}
                                                     {orderAmount}
                                                 </td>
                                                 <td>

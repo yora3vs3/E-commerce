@@ -18,7 +18,6 @@ const Checkout = () => {
   const [message, setMessage] = useState("Initializing checkout...");
   const [clientSecret, setClientSecret] = useState("");
 
-
   const paymentMethod = useSelector(selectPaymentMethod);
   const cartItems = useSelector(selectCartItems);
   const totalAmount = useSelector(selectCartTotalAmount);

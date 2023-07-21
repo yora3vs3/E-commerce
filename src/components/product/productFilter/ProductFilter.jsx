@@ -80,7 +80,7 @@ const ProductFilter = () => {
           })}
         </select>
         <h4>Price</h4>
-        <p>{`$${price}`}</p>
+        <p>{`Ksh ${price}`}</p>
         <div className={styles.price}>
           <input
             type="range"

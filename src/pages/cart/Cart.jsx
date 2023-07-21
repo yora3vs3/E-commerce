@@ -158,7 +158,7 @@ const Cart = () => {
                   </p>
                   <div className={styles.text}>
                     <h4>Subtotal:</h4>
-                    <h3>{`$${cartTotalAmount.toFixed(2)}`}</h3>
+                    <h3>{`Ksh ${cartTotalAmount.toFixed(2)}`}</h3>
                   </div>
                   <p>Tax an shipping calculated at checkout</p>
                   <button

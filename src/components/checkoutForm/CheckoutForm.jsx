@@ -11,11 +11,7 @@ import spinnerImg from "../../assets/spinner.jpg";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { selectEmail, selectUserID } from "../../redux/slice/authSlice";
-import {
-    CLEAR_CART,
-    selectCartItems,
-    selectCartTotalAmount,
-} from "../../redux/slice/cartSlice";
+import { CLEAR_CART, selectCartItems, selectCartTotalAmount } from "../../redux/slice/cartSlice";
 import { selectShippingAddress } from "../../redux/slice/checkoutSlice";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { db } from "../../firebase/config";
@@ -66,7 +62,7 @@ const CheckoutForm = () => {
             shippingAddress,
             createdAt: Timestamp.now().toDate(),
         };
-        
+
         try {
             addDoc(collection(db, "orders"), orderConfig);
             dispatch(CLEAR_CART());
