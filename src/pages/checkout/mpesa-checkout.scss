@@ -36,6 +36,14 @@ justify-content: space-around;
           background-color: rgb(2, 83, 2);
         }
       }
+      .error-msg{
+        width: 100%;
+        text-align: center;
+        span{
+          background-color:green;
+          color:#fff;
+        cursor: pointer;       }
+      }
     }
   }
 }

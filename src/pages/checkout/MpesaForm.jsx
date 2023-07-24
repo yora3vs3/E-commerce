@@ -46,7 +46,7 @@ const MpesaForm = () => {
 
             .catch((error) => {
                 console.log(error);
-                setError(error.message);
+                setError("Something went wrong");
                 setButtonText("Pay");
             });
     };
@@ -80,7 +80,7 @@ const MpesaForm = () => {
     };
 
 
-    return(<>
+    return (<>
         <h2 >Checkout</h2>
         <div className='checkout'>
             <div className='card-summary'>
@@ -95,7 +95,7 @@ const MpesaForm = () => {
 
                 <Card>
                     <form className="mpesa-form">
-                        <input
+                     {!error && <> <input
                             onChange={(e) => setPhone(e.target.value)}
                             placeholder="Phone"
                             className="phone-input"
@@ -107,7 +107,14 @@ const MpesaForm = () => {
                         >
                             {buttonText}
                         </button>
-                        {error}
+                     </>}  
+
+                        {error &&
+                            <p className='error-msg'>
+                                {error}
+                                <span onClick={() => navigate("/checkout-details")}>  Try again ?</span>
+                            </p>
+                        }
                     </form>
 
                 </Card>
