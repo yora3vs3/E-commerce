@@ -37,6 +37,7 @@ const MpesaForm = () => {
         })
             .then((res) => {
                 setData(res.data.CustomerMessage);
+                console.log(res)
                 if (res.status === 200) saveOrder();
                 setPhone("");
                 setButtonText("Pay");
