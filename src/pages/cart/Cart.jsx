@@ -65,13 +65,13 @@ const Cart = () => {
   return (
     <section>
       <div className={`container ${styles.table}`}>
-        <h2>Shopping Cart</h2>
+        <h2>Purchase Cart</h2>
         {cartItems.length === 0 ? (
           <>
             <p>Your cart is currently empty.</p>
             <br />
             <div>
-              <Link to="/#products">&larr; Continue shopping</Link>
+              <Link to="/#products">&larr; Continue Purchasing</Link>
             </div>
           </>
         ) : (
