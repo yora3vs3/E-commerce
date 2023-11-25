@@ -61,7 +61,7 @@ const ProductDetails = () => {
                 <h3>{product.name}</h3>
                 <p className={styles.price}>
                   <bold style={{ color: "black" }}>Price:&nbsp;</bold>
-                  {`Ksh ${product.price}`}
+                  {`$ ${product.price}`}
                 </p>
                 <p>{product.desc}</p>
                 <p>
